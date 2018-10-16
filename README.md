@@ -1,4 +1,4 @@
-# translation fun
+# translation fun kotlin
 This project is an example application to translate simple English phrases to German and uses common Android features and Kotlin.
 * MVVW architecture
   * ModelView
@@ -17,8 +17,8 @@ This project is an example application to translate simple English phrases to Ge
   * Custom RecyclerView SwipeAction to delete cards
   
 Checkout the related projects
-* translation-fun realized in Java - TODO coming soon
-* translation-fun realized Java and RxJava - TODO coming soon
+* [translation-fun realized in Java](https://github.com/graf-semmel/translation-fun)
+* translation-fun-rxjava realized in Java and RxJava - TODO coming soon
   
 To use the Google Translation Api you have to optain an ApiKey from Google Cloud Console. Using the Translation Api **is not free**, but the price for a single translation is very low. Anyway be aware of that!! You find more information here -> https://cloud.google.com/translate/pricing
 * Register for Google Cloud Console
