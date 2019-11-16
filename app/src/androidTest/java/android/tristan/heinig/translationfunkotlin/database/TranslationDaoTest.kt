@@ -16,10 +16,10 @@
 
 package android.tristan.heinig.translationfunkotlin.database
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
-import android.arch.persistence.room.Room
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.AndroidJUnit4
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.room.Room
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import android.tristan.heinig.translationfunkotlin.database.dao.TranslationDao
 import android.tristan.heinig.translationfunkotlin.database.entity.TranslationItem
 import android.tristan.heinig.translationfunkotlin.util.LiveDataTestUtil
@@ -49,8 +49,9 @@ class TranslationDaoTest {
   @Before
   @Throws(Exception::class)
   fun initDb() {
-    mDatabase = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getContext(),
-      TranslationDatabase::class.java).allowMainThreadQueries().build()
+    mDatabase = Room.inMemoryDatabaseBuilder(
+            InstrumentationRegistry.getContext(),
+            TranslationDatabase::class.java).allowMainThreadQueries().build()
     mTranslationDao = mDatabase.mTranslationDao()
     val mTimeMillis = System.currentTimeMillis()
     translationItemNewerLessViews = buildTranslationItem("1", "", "", "", mTimeMillis, 1)

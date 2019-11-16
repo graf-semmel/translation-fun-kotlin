@@ -10,63 +10,60 @@ import android.widget.Filterable
 import android.widget.TextView
 
 class TranslationFilterListAdapter : BaseAdapter(), Filterable {
+    private var mFilteredTranslations: MutableList<TranslationItem> = ArrayList()
+    private val mTranslationFilter = TranslationFilter()
+    val filteredTranslations: List<TranslationItem>?
+        get() = mFilteredTranslations
+    var allTranslations: List<TranslationItem> = ArrayList()
+        private set
 
-  private var mFilteredTranslations: MutableList<TranslationItem> = ArrayList()
-  private val mTranslationFilter = TranslationFilter()
+    override fun getCount(): Int = mFilteredTranslations.size
 
-  val filteredTranslations: List<TranslationItem>?
-    get() = mFilteredTranslations
-  var allTranslations: List<TranslationItem> = ArrayList()
-    private set
+    fun setTranslations(pTranslationItems: List<TranslationItem>) {
+        allTranslations = pTranslationItems
+        mFilteredTranslations = ArrayList(allTranslations)
+        notifyDataSetChanged()
+    }
 
-  override fun getCount(): Int = mFilteredTranslations.size
+    override fun getItem(pPosition: Int): TranslationItem = mFilteredTranslations[pPosition]
 
-  fun setTranslations(pTranslationItems: List<TranslationItem>) {
-    allTranslations = pTranslationItems
-    mFilteredTranslations = ArrayList(allTranslations)
-    notifyDataSetChanged()
-  }
+    override fun getItemId(pPosition: Int): Long = pPosition.toLong()
 
-  override fun getItem(pPosition: Int): TranslationItem = mFilteredTranslations[pPosition]
+    override fun getView(pPosition: Int, pView: View?, pViewGroup: ViewGroup): View {
+        val view: View? = pView ?: LayoutInflater.from(pViewGroup.context).inflate(
+                android.R.layout.simple_dropdown_item_1line, pViewGroup,
+                false
+        )
+        (view as TextView).text = getItem(pPosition).text
+        return view
+    }
 
-  override fun getItemId(pPosition: Int): Long = pPosition.toLong()
+    override fun getFilter(): Filter = mTranslationFilter
 
-  override fun getView(pPosition: Int, pView: View?, pViewGroup: ViewGroup): View {
-    val view: View? = pView ?: LayoutInflater.from(pViewGroup.context).inflate(android.R.layout.simple_dropdown_item_1line, pViewGroup,
-      false)
-    (view as TextView).text = getItem(pPosition).text
-    return view
-  }
+    private inner class TranslationFilter : Filter() {
+        override fun convertResultToString(pResultValue: Any): CharSequence = (pResultValue as TranslationItem).text
 
-  override fun getFilter(): Filter = mTranslationFilter
+        override fun performFiltering(pCharSequence: CharSequence?): Filter.FilterResults {
+            val results = Filter.FilterResults()
+            val suggestions = ArrayList<TranslationItem>()
+            if (pCharSequence != null) {
+                for (customer in allTranslations) {
+                    // Note: change the "contains" to "startsWith" if you only want starting matches
+                    if (customer.text.toLowerCase().contains(pCharSequence.toString().toLowerCase())) {
+                        suggestions.add(customer)
+                    }
+                }
+            }
+            results.values = suggestions
+            results.count = suggestions.size
 
-  private inner class TranslationFilter : Filter() {
-
-    override fun convertResultToString(pResultValue: Any): CharSequence = (pResultValue as TranslationItem).text
-
-    override fun performFiltering(pCharSequence: CharSequence?): Filter.FilterResults {
-      val results = Filter.FilterResults()
-
-      val suggestions = ArrayList<TranslationItem>()
-      if (pCharSequence != null) {
-        for (customer in allTranslations) {
-          // Note: change the "contains" to "startsWith" if you only want starting matches
-          if (customer.text.toLowerCase().contains(pCharSequence.toString().toLowerCase())) {
-            suggestions.add(customer)
-          }
+            return results
         }
-      }
-      results.values = suggestions
-      results.count = suggestions.size
 
-      return results
+        override fun publishResults(pCharSequence: CharSequence?, pFilterResults: Filter.FilterResults?) {
+            mFilteredTranslations.clear()
+            if (pFilterResults != null) mFilteredTranslations.addAll(pFilterResults.values as ArrayList<TranslationItem>)
+            notifyDataSetChanged()
+        }
     }
-
-    override fun publishResults(pCharSequence: CharSequence?, pFilterResults: Filter.FilterResults?) {
-      mFilteredTranslations.clear()
-      if (pFilterResults != null) mFilteredTranslations.addAll(pFilterResults.values as ArrayList<TranslationItem>)
-      notifyDataSetChanged()
-    }
-
-  }
 }
