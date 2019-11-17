@@ -1,6 +1,6 @@
 package com.grafsemmel.translationfun.repository
 
-import com.grafsemmel.translationfun.database.entity.TranslationItem
+import com.grafsemmel.translationtun.domain.model.TranslationItem
 
 class ActiveTranslationState private constructor(val translationItem: TranslationItem?, val state: STATE) {
     enum class STATE {

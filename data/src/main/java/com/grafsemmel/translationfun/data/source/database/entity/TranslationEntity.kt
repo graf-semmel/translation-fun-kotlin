@@ -1,15 +1,15 @@
-package com.grafsemmel.translationfun.database.entity
+package com.grafsemmel.translationfun.data.source.database.entity
 
-import com.grafsemmel.translationfun.database.DateConverter
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import com.grafsemmel.translationtun.domain.model.TranslationItem
 import java.util.*
 
 @Entity(tableName = "translation_item")
 @TypeConverters(DateConverter::class)
-data class TranslationItem(
+data class TranslationEntity(
         @PrimaryKey
         @ColumnInfo(name = "text")
         var text: String,
@@ -29,4 +29,13 @@ data class TranslationItem(
 
     constructor(text: String, translation: String, source: String, target: String) :
             this(text, translation, source, target, Date(), 1)
+
+    fun toDomain(): TranslationItem = TranslationItem(
+            text,
+            translation,
+            source,
+            target,
+            date,
+            views
+    )
 }

@@ -16,13 +16,11 @@
 
 package android.grafsemmel.translationfun.translationfunkotlin.database
 
-import com.grafsemmel.translationfun.database.TranslationDatabase
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.grafsemmel.translationfun.database.dao.TranslationDao
-import com.grafsemmel.translationfun.database.entity.TranslationItem
+import com.grafsemmel.translationfun.data.source.database.dao.TranslationDao
 import android.grafsemmel.translationfun.translationfunkotlin.util.LiveDataTestUtil
 import junit.framework.Assert.*
 import org.junit.After
@@ -41,19 +39,19 @@ class TranslationDaoTest {
 
   // executes each task synchronously
   @get:Rule var instantTaskExecutorRule = InstantTaskExecutorRule()
-  private lateinit var mDatabase: TranslationDatabase
-  private lateinit var mTranslationDao: TranslationDao
+  private lateinit var mDatabase: com.grafsemmel.translationfun.data.source.database.TranslationDatabase
+  private lateinit var mTranslationDao: com.grafsemmel.translationfun.data.source.database.dao.TranslationDao
 
-  private lateinit var translationItemNewerLessViews: TranslationItem
-  private lateinit var translationItemOlderMoreViews: TranslationItem
+  private lateinit var translationItemNewerLessViews: com.grafsemmel.translationtun.domain.model.TranslationItem
+  private lateinit var translationItemOlderMoreViews: com.grafsemmel.translationtun.domain.model.TranslationItem
 
   @Before
   @Throws(Exception::class)
   fun initDb() {
     mDatabase = Room.inMemoryDatabaseBuilder(
             InstrumentationRegistry.getContext(),
-            TranslationDatabase::class.java).allowMainThreadQueries().build()
-    mTranslationDao = mDatabase.mTranslationDao()
+            com.grafsemmel.translationfun.data.source.database.TranslationDatabase::class.java).allowMainThreadQueries().build()
+    mTranslationDao = mDatabase.translationDao()
     val mTimeMillis = System.currentTimeMillis()
     translationItemNewerLessViews = buildTranslationItem("1", "", "", "", mTimeMillis, 1)
     translationItemOlderMoreViews = buildTranslationItem("2", "", "", "", mTimeMillis - 1000, 10)
@@ -184,5 +182,5 @@ class TranslationDaoTest {
   }
 
   private fun buildTranslationItem(pText: String, pTranslation: String, pSourceLngCode: String, pTargetLngCode: String, pDate: Long,
-    pViews: Int): TranslationItem = TranslationItem(pText, pTranslation, pSourceLngCode, pTargetLngCode, Date(pDate), pViews)
+    pViews: Int): com.grafsemmel.translationtun.domain.model.TranslationItem = com.grafsemmel.translationtun.domain.model.TranslationItem(pText, pTranslation, pSourceLngCode, pTargetLngCode, Date(pDate), pViews)
 }

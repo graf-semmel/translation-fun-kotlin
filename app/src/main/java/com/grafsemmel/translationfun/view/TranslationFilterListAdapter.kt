@@ -7,7 +7,7 @@ import android.widget.BaseAdapter
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
-import com.grafsemmel.translationfun.database.entity.TranslationItem
+import com.grafsemmel.translationtun.domain.model.TranslationItem
 
 class TranslationFilterListAdapter : BaseAdapter(), Filterable {
     private var mFilteredTranslations: MutableList<TranslationItem> = ArrayList()

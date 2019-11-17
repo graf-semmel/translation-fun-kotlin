@@ -31,5 +31,10 @@ ext {
     androidx_cardview = 'androidx.cardview:cardview:1.0.0'
     androidx_recyclerview = 'androidx.recyclerview:recyclerview:1.0.0'
     androidx_core = 'androidx.core:core-ktx:1.0.2'
+    androidx_lifecycle = 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     android_material = 'com.google.android.material:material:1.0.0'
+    //room
+    androidx_room = 'androidx.room:room-runtime:2.2.1'
+    androidx_room_compiler = 'androidx.room:room-compiler:2.2.1'
+    androidx_room_kapt = 'androidx.room:room-compiler:2.2.1'
 }

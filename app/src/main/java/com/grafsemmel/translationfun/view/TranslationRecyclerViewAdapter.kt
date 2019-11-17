@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.grafsemmel.translationfun.R
-import com.grafsemmel.translationfun.database.entity.TranslationItem
+import com.grafsemmel.translationtun.domain.model.TranslationItem
 import com.grafsemmel.translationfun.view.TranslationRecyclerViewAdapter.TranslationViewHolder
 import kotlinx.android.synthetic.main.view_translation.view.*
 

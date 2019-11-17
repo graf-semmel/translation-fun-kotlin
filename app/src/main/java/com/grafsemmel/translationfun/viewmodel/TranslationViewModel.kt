@@ -1,11 +1,11 @@
 package com.grafsemmel.translationfun.viewmodel
 
 import android.app.Application
-import com.grafsemmel.translationfun.database.entity.TranslationItem
-import com.grafsemmel.translationfun.repository.ActiveTranslationState
-import com.grafsemmel.translationfun.repository.TranslationRepository
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import com.grafsemmel.translationfun.repository.ActiveTranslationState
+import com.grafsemmel.translationfun.repository.TranslationRepository
+import com.grafsemmel.translationtun.domain.model.TranslationItem
 
 class TranslationViewModel(application: Application) : AndroidViewModel(application) {
     private val mRepository: TranslationRepository = TranslationRepository(application)
@@ -14,8 +14,8 @@ class TranslationViewModel(application: Application) : AndroidViewModel(applicat
     val activeTranslation: LiveData<ActiveTranslationState>
 
     init {
-        mostRecentTranslations = mRepository.mostRecentTranslations
-        mostViewedTranslations = mRepository.mostViewedTranslations
+        mostRecentTranslations = mRepository.getMostRecentTranslations()
+        mostViewedTranslations = mRepository.getMostViewedTranslations()
         activeTranslation = mRepository.activeTranslation
     }
 

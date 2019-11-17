@@ -1,4 +1,4 @@
-package com.grafsemmel.translationfun
+package com.grafsemmel.translationfun.data
 
 import android.os.Handler
 import android.os.Looper

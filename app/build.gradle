@@ -29,9 +29,13 @@ android {
     productFlavors {
     }
 }
-
+repositories {
+    mavenCentral()
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':domain')
+    implementation project(':data')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation androidx_appcompat
     implementation androidx_constraintlayout
@@ -46,11 +50,11 @@ dependencies {
     // Google translate components
     implementation 'com.google.cloud:google-cloud-translate:1.48.0'
     // Room components
-    implementation 'androidx.room:room-runtime:2.2.1'
-    annotationProcessor 'androidx.room:room-compiler:2.2.1'
-    kapt 'androidx.room:room-compiler:2.2.1'
+    implementation androidx_room
+    annotationProcessor androidx_room_compiler
+    kapt androidx_room_kapt
     // Lifecycle components
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    implementation androidx_lifecycle
     annotationProcessor 'androidx.lifecycle:lifecycle-common-java8:2.1.0'
     // Test scomponents
     testImplementation 'junit:junit:4.12'
@@ -60,6 +64,4 @@ dependencies {
     androidTestImplementation 'androidx.arch.core:core-testing:2.1.0'
     androidTestImplementation 'androidx.room:room-testing:2.2.1'
 }
-repositories {
-    mavenCentral()
-}
+

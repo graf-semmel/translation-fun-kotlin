@@ -4,7 +4,7 @@ import com.google.cloud.translate.Translate
 import com.google.cloud.translate.Translate.TranslateOption
 import com.google.cloud.translate.TranslateException
 import com.google.cloud.translate.TranslateOptions
-import com.grafsemmel.translationfun.AppExecutors
+import com.grafsemmel.translationfun.data.AppExecutors
 
 class TranslationWebservice private constructor(pApiKey: String, pCallback: WebserviceInitialisationCallback) {
     private val mAppExecutors: AppExecutors = AppExecutors.instance

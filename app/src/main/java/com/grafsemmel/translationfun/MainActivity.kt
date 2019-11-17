@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
-import com.grafsemmel.translationfun.database.entity.TranslationItem
+import com.grafsemmel.translationtun.domain.model.TranslationItem
 import com.grafsemmel.translationfun.repository.ActiveTranslationState
 import com.grafsemmel.translationfun.repository.ActiveTranslationState.STATE
 import com.grafsemmel.translationfun.utils.NetworkUtils
@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun updateTranslationContainer(pTranslationItems: List<TranslationItem>?, pViewGroup: ViewGroup, pItemCount: Int) {
+    private fun updateTranslationContainer(pTranslationItems: List<com.grafsemmel.translationtun.domain.model.TranslationItem>?, pViewGroup: ViewGroup, pItemCount: Int) {
         pTranslationItems?.let { items ->
             pViewGroup.removeAllViews()
             var index = 0

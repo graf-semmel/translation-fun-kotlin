@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.grafsemmel.translationfun.database.entity.TranslationItem
 import com.grafsemmel.translationfun.view.SwipeToDeleteCallback
 import com.grafsemmel.translationfun.view.TranslationRecyclerViewAdapter
 import com.grafsemmel.translationfun.viewmodel.TranslationViewModel
+import com.grafsemmel.translationtun.domain.model.TranslationItem
 import kotlinx.android.synthetic.main.activity_list.*
 
 class ListActivity : AppCompatActivity() {
