@@ -43,6 +43,7 @@ dependencies {
     implementation androidx_recyclerview
     implementation android_material
     implementation "com.google.code.gson:gson:2.8.5"
+    implementation 'org.koin:koin-android:2.0.1'
     // Koin
     implementation "org.koin:koin-androidx-scope:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"

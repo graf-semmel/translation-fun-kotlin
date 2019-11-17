@@ -9,9 +9,7 @@ import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.snackbar.Snackbar
-import com.grafsemmel.translationtun.domain.model.TranslationItem
 import com.grafsemmel.translationfun.repository.ActiveTranslationState
 import com.grafsemmel.translationfun.repository.ActiveTranslationState.STATE
 import com.grafsemmel.translationfun.utils.NetworkUtils
@@ -21,15 +19,15 @@ import com.grafsemmel.translationfun.viewmodel.TranslationViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.include_card_most_recent.*
 import kotlinx.android.synthetic.main.include_card_most_viewed.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var mTranslationViewModel: TranslationViewModel
+    private val mTranslationViewModel by viewModel<TranslationViewModel>()
     private lateinit var mTranslationFilterListAdapter: TranslationFilterListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mTranslationViewModel = ViewModelProviders.of(this).get(TranslationViewModel::class.java)
         initSearchInput()
         subscribeToModel()
     }

@@ -16,10 +16,12 @@ import com.grafsemmel.translationfun.view.TranslationRecyclerViewAdapter
 import com.grafsemmel.translationfun.viewmodel.TranslationViewModel
 import com.grafsemmel.translationtun.domain.model.TranslationItem
 import kotlinx.android.synthetic.main.activity_list.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListActivity : AppCompatActivity() {
     private lateinit var mAdapter: TranslationRecyclerViewAdapter
-    private lateinit var mTranslationViewModel: TranslationViewModel
+    private val mTranslationViewModel by viewModel<TranslationViewModel>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +35,6 @@ class ListActivity : AppCompatActivity() {
         val itemTouchHelper = ItemTouchHelper(createSwipeToDeleteCallback(deleteDrawable!!, backgroundColor))
         itemTouchHelper.attachToRecyclerView(recycler_view)
 
-        mTranslationViewModel = ViewModelProviders.of(this).get(TranslationViewModel::class.java)
         subscribeToModel(mTranslationViewModel, intent.getIntExtra(EXTRA_SORT_TYPE, SORT_TYPE_DATE))
     }
 

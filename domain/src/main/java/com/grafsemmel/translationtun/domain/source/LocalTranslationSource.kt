@@ -3,7 +3,7 @@ package com.grafsemmel.translationtun.domain.source
 import androidx.lifecycle.LiveData
 import com.grafsemmel.translationtun.domain.model.TranslationItem
 
-interface TranslationDataSource {
+interface LocalTranslationSource {
     fun getAll(): LiveData<List<TranslationItem>>
     fun getAllOrderedByDate(): LiveData<List<TranslationItem>>
     fun getAllOrderedByViews(): LiveData<List<TranslationItem>>

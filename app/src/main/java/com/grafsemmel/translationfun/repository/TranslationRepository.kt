@@ -5,18 +5,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.grafsemmel.translationfun.R
 import com.grafsemmel.translationfun.data.AppExecutors
-import com.grafsemmel.translationfun.data.source.LocalTranslationSource
 import com.grafsemmel.translationfun.webservice.TranslationWebservice
 import com.grafsemmel.translationfun.webservice.TranslationWebservice.SimpleCallback
 import com.grafsemmel.translationfun.webservice.TranslationWebservice.WebserviceInitialisationCallback
 import com.grafsemmel.translationtun.domain.model.TranslationItem
+import com.grafsemmel.translationtun.domain.source.LocalTranslationSource
 import java.util.*
 
-class TranslationRepository(pApplication: Application) {
+class TranslationRepository(
+        application: Application,
+        private val localSource: LocalTranslationSource
+) {
     private val mAppExecutors = AppExecutors.instance
-    private val mTranslationDao = LocalTranslationSource(pApplication)
     private var mInitialised: Boolean = false
-    private val mTranslationWebservice = TranslationWebservice.getInstance(pApplication.getString(R.string.api_key), object : WebserviceInitialisationCallback {
+    private val mTranslationWebservice = TranslationWebservice.getInstance(application.getString(R.string.api_key), object : WebserviceInitialisationCallback {
         override fun onInitialised() {
             mInitialised = true
         }
@@ -29,15 +31,15 @@ class TranslationRepository(pApplication: Application) {
     val activeTranslation: LiveData<ActiveTranslationState>
         get() = mActiveTranslation
 
-    fun getMostRecentTranslations(): LiveData<List<TranslationItem>> = mTranslationDao.getAllOrderedByDate()
+    fun getMostRecentTranslations(): LiveData<List<TranslationItem>> = localSource.getAllOrderedByDate()
 
-    fun getMostViewedTranslations(): LiveData<List<TranslationItem>> = mTranslationDao.getAllOrderedByViews()
+    fun getMostViewedTranslations(): LiveData<List<TranslationItem>> = localSource.getAllOrderedByViews()
 
-    fun insert(pTranslationItem: TranslationItem) = mAppExecutors.diskIO().execute { mTranslationDao.insert(pTranslationItem) }
+    fun insert(pTranslationItem: TranslationItem) = mAppExecutors.diskIO().execute { localSource.insert(pTranslationItem) }
 
-    fun delete(pTranslationItem: TranslationItem) = mAppExecutors.diskIO().execute { mTranslationDao.delete(pTranslationItem.text) }
+    fun delete(pTranslationItem: TranslationItem) = mAppExecutors.diskIO().execute { localSource.delete(pTranslationItem.text) }
 
-    fun update(pTranslationItem: TranslationItem) = mAppExecutors.diskIO().execute { mTranslationDao.update(pTranslationItem) }
+    fun update(pTranslationItem: TranslationItem) = mAppExecutors.diskIO().execute { localSource.update(pTranslationItem) }
 
     fun translate(pText: String, pSourceLngCode: String, pTargetLngCode: String) {
         getTranslationByText(pText, object : SimpleCallback<TranslationItem> {
@@ -55,7 +57,7 @@ class TranslationRepository(pApplication: Application) {
     }
 
     fun getTranslationByText(pText: String, pCallback: SimpleCallback<TranslationItem>) = mAppExecutors.diskIO().execute {
-        val translation = mTranslationDao.getByText(pText)
+        val translation = localSource.getByText(pText)
         mAppExecutors.mainThread().execute {
             when (translation) {
                 null -> pCallback.onNoResult()

@@ -1,15 +1,15 @@
 package com.grafsemmel.translationfun.data.source
 
-import android.app.Application
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.grafsemmel.translationfun.data.source.database.TranslationDatabase
 import com.grafsemmel.translationfun.data.source.database.entity.TranslationEntity
 import com.grafsemmel.translationtun.domain.model.TranslationItem
-import com.grafsemmel.translationtun.domain.source.TranslationDataSource
+import com.grafsemmel.translationtun.domain.source.LocalTranslationSource
 
-class LocalTranslationSource(application: Application) : TranslationDataSource {
-    private val mTranslationDao = TranslationDatabase.getInstance(application).translationDao()
+class LocalTranslationSourceImpl(context: Context) : LocalTranslationSource {
+    private val mTranslationDao = TranslationDatabase.getInstance(context).translationDao()
 
     override fun getAll(): LiveData<List<TranslationItem>> = mTranslationDao.getAll().toDomain()
 
