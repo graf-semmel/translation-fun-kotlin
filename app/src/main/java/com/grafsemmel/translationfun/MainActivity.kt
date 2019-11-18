@@ -104,18 +104,18 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun subscribeToMostViewedTranslations(pItemCount: Int) {
+    private fun subscribeToMostViewedTranslations(itemCount: Int) {
         mTranslationViewModel.mostViewedTranslations.observe(
-                this, Observer { pTranslationItems -> updateTranslationContainer(pTranslationItems, container_most_viewed, pItemCount) }
+                this, Observer { pTranslationItems -> updateTranslationContainer(pTranslationItems, container_most_viewed, itemCount) }
         )
     }
 
-    private fun updateTranslationContainer(pTranslationItems: List<com.grafsemmel.translationtun.domain.model.TranslationItem>?, pViewGroup: ViewGroup, pItemCount: Int) {
-        pTranslationItems?.let { items ->
-            pViewGroup.removeAllViews()
+    private fun updateTranslationContainer(items: List<TranslationItem>?, viewGroup: ViewGroup, itemCount: Int) {
+        items?.let { items ->
+            viewGroup.removeAllViews()
             var index = 0
-            while (index < pItemCount && index < items.size) {
-                pViewGroup.addView(ViewUtils.createTranslationView(layoutInflater, pViewGroup, items[index]))
+            while (index < itemCount && index < items.size) {
+                viewGroup.addView(ViewUtils.createTranslationView(layoutInflater, viewGroup, items[index]))
                 index++
             }
         }
