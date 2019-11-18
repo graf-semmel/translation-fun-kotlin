@@ -1,7 +1,6 @@
 package com.grafsemmel.translationfun.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.grafsemmel.translationfun.data.AppExecutors
 import com.grafsemmel.translationtun.domain.model.TranslationItem
 import com.grafsemmel.translationtun.domain.source.LocalTranslationSource
@@ -14,9 +13,9 @@ class TranslationRepository(
         private val remoteSource: RemoteTranslationSource,
         private val appExecutors: AppExecutors
 ) {
-    private val mActiveTranslation = MutableLiveData<ActiveTranslationState>()
+    private val _activeTranslation = ActiveTranslation()
     val activeTranslation: LiveData<ActiveTranslationState>
-        get() = mActiveTranslation
+        get() = _activeTranslation
 
     fun getMostRecentTranslations(): LiveData<List<TranslationItem>> = localSource.getAllOrderedByDate()
 
@@ -33,7 +32,7 @@ class TranslationRepository(
             override fun onResult(translation: TranslationItem) {
                 translation.copy(views = translation.views + 1, date = Date()).let {
                     update(it)
-                    mActiveTranslation.value = ActiveTranslationState.updated(it)
+                    _activeTranslation.updated(it)
                 }
             }
 
@@ -53,15 +52,15 @@ class TranslationRepository(
         }
     }
 
-    private fun translateByGoogle(pText: String, pSourceLngCode: String, pTargetLngCode: String) {
-        remoteSource.translate(pText, pSourceLngCode, pTargetLngCode, object : SimpleCallback<String> {
+    private fun translateByGoogle(text: String, sourceLngCode: String, targetLngCode: String) {
+        remoteSource.translate(text, sourceLngCode, targetLngCode, object : SimpleCallback<String> {
             override fun onResult(translation: String) {
-                val translationItem = TranslationItem(pText, translation, pSourceLngCode, pTargetLngCode, Date(), 0)
-                mActiveTranslation.value = ActiveTranslationState.saved(translationItem)
+                val translationItem = TranslationItem(text, translation, sourceLngCode, targetLngCode, Date(), 0)
+                _activeTranslation.saved(translationItem)
             }
 
             override fun onNoResult() {
-                mActiveTranslation.value = ActiveTranslationState.failed()
+                _activeTranslation.failed()
             }
         })
     }

@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun subscribeToActiveTranslation() {
         mTranslationViewModel.activeTranslation.observe(this, Observer { pActiveTranslationState ->
-            if (pActiveTranslationState != null && pActiveTranslationState.state !== STATE.FAILED && pActiveTranslationState.translationItem !== null) {
+            if (pActiveTranslationState != null && pActiveTranslationState.state !== STATE.FAILED && pActiveTranslationState.item !== null) {
                 val myAlertBuilder = buildTranslationDialog(pActiveTranslationState)
                 myAlertBuilder.show()
             } else {
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun buildTranslationDialog(pPTranslationItemState: ActiveTranslationState): AlertDialog.Builder {
-        val translationItem = pPTranslationItemState.translationItem
+        val translationItem = pPTranslationItemState.item
         val myAlertBuilder = AlertDialog.Builder(this@MainActivity)
         myAlertBuilder.setTitle(R.string.dialog_title)
         translationItem?.let {
