@@ -14,9 +14,10 @@
 /.idea/runConfigurations.xml
 /.idea/codeStyles
 /.idea/dictionaries
+
 .DS_Store
 /build
 /captures
 .externalNativeBuild
 
-/app/src/main/res/values/credentials.xml
+/app/src/main/res/values/key.xml
