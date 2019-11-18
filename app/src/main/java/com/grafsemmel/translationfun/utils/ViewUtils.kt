@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.grafsemmel.translationfun.R
 import com.grafsemmel.translationfun.domain.model.TranslationItem
+import kotlinx.android.synthetic.main.view_translation.view.*
 
 object ViewUtils {
     fun createTranslationView(inflater: LayoutInflater, parent: ViewGroup, item: TranslationItem): View {
