@@ -10,8 +10,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
-import com.grafsemmel.translationfun.repository.ActiveTranslationState
-import com.grafsemmel.translationfun.repository.ActiveTranslationState.STATE
+import com.grafsemmel.translationfun.data.repository.ActiveTranslationState
+import com.grafsemmel.translationfun.data.repository.ActiveTranslationState.STATE
 import com.grafsemmel.translationfun.utils.NetworkUtils
 import com.grafsemmel.translationfun.utils.ViewUtils
 import com.grafsemmel.translationfun.view.TranslationFilterListAdapter

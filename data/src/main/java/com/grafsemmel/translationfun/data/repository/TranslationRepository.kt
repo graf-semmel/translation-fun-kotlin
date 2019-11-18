@@ -1,4 +1,4 @@
-package com.grafsemmel.translationfun.repository
+package com.grafsemmel.translationfun.data.repository
 
 import androidx.lifecycle.LiveData
 import com.grafsemmel.translationfun.data.AppExecutors

@@ -5,7 +5,7 @@ import com.grafsemmel.translationfun.data.AppExecutors
 import com.grafsemmel.translationfun.data.local.LocalTranslationSourceImpl
 import com.grafsemmel.translationfun.data.local.database.TranslationDatabase
 import com.grafsemmel.translationfun.data.remote.TranslationWebservice
-import com.grafsemmel.translationfun.repository.TranslationRepository
+import com.grafsemmel.translationfun.data.repository.TranslationRepository
 import com.grafsemmel.translationfun.viewmodel.TranslationViewModel
 import com.grafsemmel.translationtun.domain.source.LocalTranslationSource
 import com.grafsemmel.translationtun.domain.source.RemoteTranslationSource

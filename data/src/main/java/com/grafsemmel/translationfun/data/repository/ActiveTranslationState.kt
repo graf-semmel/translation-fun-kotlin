@@ -1,7 +1,7 @@
-package com.grafsemmel.translationfun.repository
+package com.grafsemmel.translationfun.data.repository
 
 import androidx.lifecycle.MutableLiveData
-import com.grafsemmel.translationfun.repository.ActiveTranslationState.STATE
+import com.grafsemmel.translationfun.data.repository.ActiveTranslationState.STATE
 import com.grafsemmel.translationtun.domain.model.TranslationItem
 
 class ActiveTranslation : MutableLiveData<ActiveTranslationState>() {
