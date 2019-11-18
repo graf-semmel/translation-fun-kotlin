@@ -1,7 +1,7 @@
 # translation fun kotlin
 This project is an example application to translate simple English phrases to German and uses common Android features and Kotlin.
 * MVVW architecture
-  * ModelView
+  * ViewModel
   * Repository
   * LiveData
 * Persistence via ROOM database framework
