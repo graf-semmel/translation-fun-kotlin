@@ -15,7 +15,7 @@ class DiApplication : Application() {
             // use Android logger - Level.INFO by default
             androidLogger()
             // use properties from assets/koin.properties
-//            androidFileProperties()
+            // androidFileProperties()
             // use modules
             modules(appModule)
         }

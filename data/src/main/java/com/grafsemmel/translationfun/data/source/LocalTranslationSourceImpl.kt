@@ -1,6 +1,5 @@
 package com.grafsemmel.translationfun.data.source
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.grafsemmel.translationfun.data.source.database.TranslationDatabase
@@ -8,22 +7,22 @@ import com.grafsemmel.translationfun.data.source.database.entity.TranslationEnti
 import com.grafsemmel.translationtun.domain.model.TranslationItem
 import com.grafsemmel.translationtun.domain.source.LocalTranslationSource
 
-class LocalTranslationSourceImpl(context: Context) : LocalTranslationSource {
-    private val mTranslationDao = TranslationDatabase.getInstance(context).translationDao()
+class LocalTranslationSourceImpl(database: TranslationDatabase) : LocalTranslationSource {
+    private val dao = database.translationDao()
 
-    override fun getAll(): LiveData<List<TranslationItem>> = mTranslationDao.getAll().toDomain()
+    override fun getAll(): LiveData<List<TranslationItem>> = dao.getAll().toDomain()
 
-    override fun getAllOrderedByDate(): LiveData<List<TranslationItem>> = mTranslationDao.getAllOrderedByDate().toDomain()
+    override fun getAllOrderedByDate(): LiveData<List<TranslationItem>> = dao.getAllOrderedByDate().toDomain()
 
-    override fun getAllOrderedByViews(): LiveData<List<TranslationItem>> = mTranslationDao.getAllOrderedByViews().toDomain()
+    override fun getAllOrderedByViews(): LiveData<List<TranslationItem>> = dao.getAllOrderedByViews().toDomain()
 
-    override fun getByText(text: String) = mTranslationDao.getByText(text)?.toDomain()
+    override fun getByText(text: String) = dao.getByText(text)?.toDomain()
 
-    override fun insert(item: TranslationItem) = mTranslationDao.insert(item.toDomain())
+    override fun insert(item: TranslationItem) = dao.insert(item.toDomain())
 
-    override fun update(item: TranslationItem) = mTranslationDao.update(item.toDomain())
+    override fun update(item: TranslationItem) = dao.update(item.toDomain())
 
-    override fun delete(item: TranslationItem) = mTranslationDao.delete(item.text)
+    override fun delete(item: TranslationItem) = dao.delete(item.text)
 
     override fun getMostRecent(limit: Int): LiveData<List<TranslationItem>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -46,7 +45,8 @@ class LocalTranslationSourceImpl(context: Context) : LocalTranslationSource {
             translation,
             source,
             target,
-            date, views
+            date,
+            views
     )
 
     private fun List<TranslationEntity>.toDomain(): List<TranslationItem> = this.map { it.toDomain() }
