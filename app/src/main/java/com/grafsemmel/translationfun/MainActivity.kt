@@ -10,12 +10,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
-import com.grafsemmel.translationfun.data.repository.ActiveTranslationState
-import com.grafsemmel.translationfun.data.repository.ActiveTranslationState.STATE
 import com.grafsemmel.translationfun.utils.NetworkUtils
 import com.grafsemmel.translationfun.utils.ViewUtils
 import com.grafsemmel.translationfun.view.TranslationFilterListAdapter
 import com.grafsemmel.translationfun.viewmodel.TranslationViewModel
+import com.grafsemmel.translationtun.domain.model.ActiveTranslationState
+import com.grafsemmel.translationtun.domain.model.TranslationItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.include_card_most_recent.*
 import kotlinx.android.synthetic.main.include_card_most_viewed.*
@@ -70,30 +70,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun subscribeToActiveTranslation() {
-        mTranslationViewModel.activeTranslation.observe(this, Observer { pActiveTranslationState ->
-            if (pActiveTranslationState != null && pActiveTranslationState.state !== STATE.FAILED && pActiveTranslationState.item !== null) {
-                val myAlertBuilder = buildTranslationDialog(pActiveTranslationState)
-                myAlertBuilder.show()
-            } else {
-                val snackbar = Snackbar.make(input_search, getString(R.string.snack_translation_failed), Snackbar.LENGTH_LONG)
-                snackbar.show()
+        mTranslationViewModel.activeTranslation.observe(this, Observer { state ->
+            when (state) {
+                is ActiveTranslationState.Saved -> buildTranslationDialog(state.item, true).show()
+                is ActiveTranslationState.Updated -> buildTranslationDialog(state.item, false).show()
+                ActiveTranslationState.Failed -> Snackbar.make(input_search, getString(R.string.snack_translation_failed), Snackbar.LENGTH_LONG).show()
             }
             input_search.isEnabled = true
             input_search.setText("")
         })
     }
 
-    private fun buildTranslationDialog(pPTranslationItemState: ActiveTranslationState): AlertDialog.Builder {
-        val translationItem = pPTranslationItemState.item
+    private fun buildTranslationDialog(item: TranslationItem, isSaved: Boolean): AlertDialog.Builder {
         val myAlertBuilder = AlertDialog.Builder(this@MainActivity)
         myAlertBuilder.setTitle(R.string.dialog_title)
-        translationItem?.let {
-            with(it) {
-                myAlertBuilder.setMessage("$source: $text\n\n$target: $translation")
-                if (pPTranslationItemState.state === STATE.SAVED) {
-                    myAlertBuilder.setPositiveButton(R.string.dialog_btn_save) { dialog, which ->
-                        mTranslationViewModel.save(it)
-                    }
+        with(item) {
+            myAlertBuilder.setMessage("$source: $text\n\n$target: $translation")
+            if (isSaved) {
+                myAlertBuilder.setPositiveButton(R.string.dialog_btn_save) { dialog, which ->
+                    mTranslationViewModel.save(item)
                 }
             }
         }

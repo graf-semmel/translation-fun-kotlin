@@ -2,32 +2,35 @@ package com.grafsemmel.translationfun.data.repository
 
 import androidx.lifecycle.LiveData
 import com.grafsemmel.translationfun.data.AppExecutors
+import com.grafsemmel.translationfun.data.model.ActiveTranslation
+import com.grafsemmel.translationtun.domain.model.ActiveTranslationState
 import com.grafsemmel.translationtun.domain.model.TranslationItem
+import com.grafsemmel.translationtun.domain.repository.TranslationRepository
 import com.grafsemmel.translationtun.domain.source.LocalTranslationSource
 import com.grafsemmel.translationtun.domain.source.RemoteTranslationSource
 import com.grafsemmel.translationtun.domain.source.RemoteTranslationSource.SimpleCallback
 import java.util.*
 
-class TranslationRepository(
+class TranslationRepositoryImpl(
         private val localSource: LocalTranslationSource,
         private val remoteSource: RemoteTranslationSource,
         private val appExecutors: AppExecutors
-) {
+) : TranslationRepository {
     private val _activeTranslation = ActiveTranslation()
-    val activeTranslation: LiveData<ActiveTranslationState>
-        get() = _activeTranslation
 
-    fun getMostRecentTranslations(): LiveData<List<TranslationItem>> = localSource.getAllOrderedByDate()
+    override fun getActiveTranslation(): LiveData<ActiveTranslationState> = _activeTranslation
 
-    fun getMostViewedTranslations(): LiveData<List<TranslationItem>> = localSource.getAllOrderedByViews()
+    override fun getMostRecentTranslations(): LiveData<List<TranslationItem>> = localSource.getAllOrderedByDate()
 
-    fun insert(item: TranslationItem) = localSource.insert(item)
+    override fun getMostViewedTranslations(): LiveData<List<TranslationItem>> = localSource.getAllOrderedByViews()
 
-    fun delete(item: TranslationItem) = localSource.delete(item.text)
+    override fun insert(item: TranslationItem) = localSource.insert(item)
 
-    fun update(item: TranslationItem) = localSource.update(item)
+    override fun delete(item: TranslationItem) = localSource.delete(item.text)
 
-    fun translate(text: String, sourceLngCode: String, targetLngCode: String) {
+    override fun update(item: TranslationItem) = localSource.update(item)
+
+    override fun translate(text: String, sourceLngCode: String, targetLngCode: String) {
         getTranslationByText(text, object : SimpleCallback<TranslationItem> {
             override fun onResult(translation: TranslationItem) {
                 translation.copy(views = translation.views + 1, date = Date()).let {
@@ -42,7 +45,7 @@ class TranslationRepository(
         })
     }
 
-    fun getTranslationByText(text: String, callback: SimpleCallback<TranslationItem>) = appExecutors.diskIO().execute {
+    private fun getTranslationByText(text: String, callback: SimpleCallback<TranslationItem>) = appExecutors.diskIO().execute {
         val translation = localSource.getByText(text)
         appExecutors.mainThread().execute {
             when (translation) {
