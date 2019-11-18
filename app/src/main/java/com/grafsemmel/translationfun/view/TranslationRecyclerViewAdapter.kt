@@ -6,33 +6,31 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.grafsemmel.translationfun.R
-import com.grafsemmel.translationtun.domain.model.TranslationItem
 import com.grafsemmel.translationfun.view.TranslationRecyclerViewAdapter.TranslationViewHolder
+import com.grafsemmel.translationtun.domain.model.TranslationItem
 import kotlinx.android.synthetic.main.view_translation.view.*
 
-class TranslationRecyclerViewAdapter(pContext: Context) : RecyclerView.Adapter<TranslationViewHolder>() {
-    private val mInflater = LayoutInflater.from(pContext)
-    var mTranslationItems: List<TranslationItem> = arrayListOf()
-        set(pTranslationItems) {
-            field = pTranslationItems
+class TranslationRecyclerViewAdapter(context: Context) : RecyclerView.Adapter<TranslationViewHolder>() {
+    private val inflater = LayoutInflater.from(context)
+    var list: List<TranslationItem> = arrayListOf()
+        set(items) {
+            field = items
             notifyDataSetChanged()
         }
 
-    override fun onCreateViewHolder(pViewGroup: ViewGroup, pViewType: Int): TranslationViewHolder =
-            TranslationViewHolder(mInflater.inflate(R.layout.view_translation_card, pViewGroup, false))
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): TranslationViewHolder =
+            TranslationViewHolder(inflater.inflate(R.layout.view_translation_card, viewGroup, false))
 
-    override fun onBindViewHolder(pViewHolder: TranslationViewHolder, pPosition: Int) {
-        when (mTranslationItems.size) {
-            0 -> pViewHolder.itemView.tv_text.setText(R.string.no_translations)
-            else -> {
-                val (text, translation) = mTranslationItems[pPosition]
-                pViewHolder.itemView.tv_text.text = text
-                pViewHolder.itemView.tv_translation.text = translation
-            }
+    override fun onBindViewHolder(holder: TranslationViewHolder, position: Int) = when (list.size) {
+        0 -> holder.itemView.tv_text.setText(R.string.no_translations)
+        else -> {
+            val (text, translation) = list[position]
+            holder.itemView.tv_text.text = text
+            holder.itemView.tv_translation.text = translation
         }
     }
 
-    override fun getItemCount(): Int = mTranslationItems.size
+    override fun getItemCount(): Int = list.size
 
-    inner class TranslationViewHolder internal constructor(pItemView: View) : RecyclerView.ViewHolder(pItemView)
+    inner class TranslationViewHolder internal constructor(view: View) : RecyclerView.ViewHolder(view)
 }

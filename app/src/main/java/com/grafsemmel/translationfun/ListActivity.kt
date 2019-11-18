@@ -19,7 +19,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListActivity : AppCompatActivity() {
     private lateinit var mAdapter: TranslationRecyclerViewAdapter
-    private val mTranslationViewModel by viewModel<TranslationViewModel>()
+    private val viewModel by viewModel<TranslationViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,24 +33,24 @@ class ListActivity : AppCompatActivity() {
         val itemTouchHelper = ItemTouchHelper(createSwipeToDeleteCallback(deleteDrawable!!, backgroundColor))
         itemTouchHelper.attachToRecyclerView(recycler_view)
 
-        subscribeToModel(mTranslationViewModel, intent.getIntExtra(EXTRA_SORT_TYPE, SORT_TYPE_DATE))
+        subscribeToModel(viewModel, intent.getIntExtra(EXTRA_SORT_TYPE, SORT_TYPE_DATE))
     }
 
     private fun createSwipeToDeleteCallback(deleteDrawable: Drawable, backgroundColor: Int): SwipeToDeleteCallback {
         return object : SwipeToDeleteCallback(deleteDrawable, backgroundColor) {
             override fun onSwiped(pViewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = pViewHolder.adapterPosition
-                val item = mAdapter.mTranslationItems[position]
-                mTranslationViewModel.remove(item)
+                val item = mAdapter.list[position]
+                viewModel.remove(item)
                 showUndoSnackbar(pViewHolder, position, item)
             }
         }
     }
 
-    private fun showUndoSnackbar(pViewHolder: RecyclerView.ViewHolder, pPosition: Int, pItem: TranslationItem) {
-        with(Snackbar.make(pViewHolder.itemView, getString(R.string.snack_translation_item_removed), Snackbar.LENGTH_LONG)) {
+    private fun showUndoSnackbar(viewHolder: RecyclerView.ViewHolder, pPosition: Int, pItem: TranslationItem) {
+        with(Snackbar.make(viewHolder.itemView, getString(R.string.snack_translation_item_removed), Snackbar.LENGTH_LONG)) {
             setAction(R.string.snack_undo) {
-                mTranslationViewModel.restore(pItem)
+                viewModel.restore(pItem)
                 recycler_view.scrollToPosition(pPosition)
             }
             setActionTextColor(Color.YELLOW)
@@ -59,7 +59,7 @@ class ListActivity : AppCompatActivity() {
     }
 
     private fun subscribeToModel(pTranslationViewModel: TranslationViewModel, pSortType: Int) {
-        val observer = Observer<List<TranslationItem>> { pTranslationItems -> pTranslationItems?.let { mAdapter.mTranslationItems = it } }
+        val observer = Observer<List<TranslationItem>> { pTranslationItems -> pTranslationItems?.let { mAdapter.list = it } }
         when (pSortType) {
             SORT_TYPE_DATE -> {
                 pTranslationViewModel.mostRecentTranslations.observe(this, observer)
