@@ -3,12 +3,12 @@ package com.grafsemmel.translationfun.data.repository
 import androidx.lifecycle.LiveData
 import com.grafsemmel.translationfun.data.AppExecutors
 import com.grafsemmel.translationfun.data.model.ActiveTranslation
-import com.grafsemmel.translationtun.domain.model.ActiveTranslationState
-import com.grafsemmel.translationtun.domain.model.TranslationItem
-import com.grafsemmel.translationtun.domain.repository.TranslationRepository
-import com.grafsemmel.translationtun.domain.source.LocalTranslationSource
-import com.grafsemmel.translationtun.domain.source.RemoteTranslationSource
-import com.grafsemmel.translationtun.domain.source.RemoteTranslationSource.SimpleCallback
+import com.grafsemmel.translationfun.domain.model.ActiveTranslationState
+import com.grafsemmel.translationfun.domain.model.TranslationItem
+import com.grafsemmel.translationfun.domain.repository.TranslationRepository
+import com.grafsemmel.translationfun.domain.source.LocalTranslationSource
+import com.grafsemmel.translationfun.domain.source.RemoteTranslationSource
+import com.grafsemmel.translationfun.domain.source.RemoteTranslationSource.SimpleCallback
 import java.util.*
 
 class TranslationRepositoryImpl(

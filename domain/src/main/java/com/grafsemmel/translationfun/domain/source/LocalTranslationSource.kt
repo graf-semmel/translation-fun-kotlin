@@ -1,7 +1,7 @@
-package com.grafsemmel.translationtun.domain.source
+package com.grafsemmel.translationfun.domain.source
 
 import androidx.lifecycle.LiveData
-import com.grafsemmel.translationtun.domain.model.TranslationItem
+import com.grafsemmel.translationfun.domain.model.TranslationItem
 
 interface LocalTranslationSource {
     fun getAll(): LiveData<List<TranslationItem>>

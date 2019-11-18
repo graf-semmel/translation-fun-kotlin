@@ -10,12 +10,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
+import com.grafsemmel.translationfun.domain.model.ActiveTranslationState
+import com.grafsemmel.translationfun.domain.model.TranslationItem
 import com.grafsemmel.translationfun.utils.NetworkUtils
 import com.grafsemmel.translationfun.utils.ViewUtils
 import com.grafsemmel.translationfun.view.TranslationFilterListAdapter
 import com.grafsemmel.translationfun.viewmodel.TranslationViewModel
-import com.grafsemmel.translationtun.domain.model.ActiveTranslationState
-import com.grafsemmel.translationtun.domain.model.TranslationItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.include_card_most_recent.*
 import kotlinx.android.synthetic.main.include_card_most_viewed.*

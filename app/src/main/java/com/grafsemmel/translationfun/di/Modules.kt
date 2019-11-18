@@ -7,9 +7,9 @@ import com.grafsemmel.translationfun.data.local.database.TranslationDatabase
 import com.grafsemmel.translationfun.data.remote.TranslationWebservice
 import com.grafsemmel.translationfun.data.repository.TranslationRepositoryImpl
 import com.grafsemmel.translationfun.viewmodel.TranslationViewModel
-import com.grafsemmel.translationtun.domain.repository.TranslationRepository
-import com.grafsemmel.translationtun.domain.source.LocalTranslationSource
-import com.grafsemmel.translationtun.domain.source.RemoteTranslationSource
+import com.grafsemmel.translationfun.domain.repository.TranslationRepository
+import com.grafsemmel.translationfun.domain.source.LocalTranslationSource
+import com.grafsemmel.translationfun.domain.source.RemoteTranslationSource
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

@@ -1,8 +1,8 @@
-package com.grafsemmel.translationtun.domain.repository
+package com.grafsemmel.translationfun.domain.repository
 
 import androidx.lifecycle.LiveData
-import com.grafsemmel.translationtun.domain.model.ActiveTranslationState
-import com.grafsemmel.translationtun.domain.model.TranslationItem
+import com.grafsemmel.translationfun.domain.model.ActiveTranslationState
+import com.grafsemmel.translationfun.domain.model.TranslationItem
 
 interface TranslationRepository {
     fun getActiveTranslation(): LiveData<ActiveTranslationState>

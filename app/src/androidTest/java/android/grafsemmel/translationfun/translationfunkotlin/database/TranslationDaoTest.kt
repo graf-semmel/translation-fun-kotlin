@@ -42,8 +42,8 @@ class TranslationDaoTest {
   private lateinit var mDatabase: com.grafsemmel.translationfun.data.local.database.TranslationDatabase
   private lateinit var mTranslationDao: com.grafsemmel.translationfun.data.local.database.dao.TranslationDao
 
-  private lateinit var translationItemNewerLessViews: com.grafsemmel.translationtun.domain.model.TranslationItem
-  private lateinit var translationItemOlderMoreViews: com.grafsemmel.translationtun.domain.model.TranslationItem
+  private lateinit var translationItemNewerLessViews: com.grafsemmel.translationfun.domain.model.TranslationItem
+  private lateinit var translationItemOlderMoreViews: com.grafsemmel.translationfun.domain.model.TranslationItem
 
   @Before
   @Throws(Exception::class)
@@ -182,5 +182,5 @@ class TranslationDaoTest {
   }
 
   private fun buildTranslationItem(pText: String, pTranslation: String, pSourceLngCode: String, pTargetLngCode: String, pDate: Long,
-    pViews: Int): com.grafsemmel.translationtun.domain.model.TranslationItem = com.grafsemmel.translationtun.domain.model.TranslationItem(pText, pTranslation, pSourceLngCode, pTargetLngCode, Date(pDate), pViews)
+    pViews: Int): com.grafsemmel.translationfun.domain.model.TranslationItem = com.grafsemmel.translationfun.domain.model.TranslationItem(pText, pTranslation, pSourceLngCode, pTargetLngCode, Date(pDate), pViews)
 }

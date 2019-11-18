@@ -1,8 +1,8 @@
 package com.grafsemmel.translationfun.data.model
 
 import androidx.lifecycle.MutableLiveData
-import com.grafsemmel.translationtun.domain.model.ActiveTranslationState
-import com.grafsemmel.translationtun.domain.model.TranslationItem
+import com.grafsemmel.translationfun.domain.model.ActiveTranslationState
+import com.grafsemmel.translationfun.domain.model.TranslationItem
 
 class ActiveTranslation : MutableLiveData<ActiveTranslationState>() {
     fun saved(item: TranslationItem) = postValue(ActiveTranslationState.Saved(item))

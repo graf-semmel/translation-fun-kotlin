@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.grafsemmel.translationfun.R
-import com.grafsemmel.translationtun.domain.model.TranslationItem
+import com.grafsemmel.translationfun.domain.model.TranslationItem
 
 object ViewUtils {
     fun createTranslationView(inflater: LayoutInflater, parent: ViewGroup, item: TranslationItem): View {

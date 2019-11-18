@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.grafsemmel.translationtun.domain.model.TranslationItem
+import com.grafsemmel.translationfun.domain.model.TranslationItem
 import java.util.*
 
 @Entity(tableName = "translation_item")

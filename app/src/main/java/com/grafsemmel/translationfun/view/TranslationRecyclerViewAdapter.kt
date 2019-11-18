@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.grafsemmel.translationfun.R
 import com.grafsemmel.translationfun.view.TranslationRecyclerViewAdapter.TranslationViewHolder
-import com.grafsemmel.translationtun.domain.model.TranslationItem
+import com.grafsemmel.translationfun.domain.model.TranslationItem
 import kotlinx.android.synthetic.main.view_translation.view.*
 
 class TranslationRecyclerViewAdapter(context: Context) : RecyclerView.Adapter<TranslationViewHolder>() {

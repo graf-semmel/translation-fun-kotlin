@@ -1,4 +1,4 @@
-package com.grafsemmel.translationtun.domain.model
+package com.grafsemmel.translationfun.domain.model
 
 sealed class ActiveTranslationState {
     data class Saved(val item: TranslationItem) : ActiveTranslationState()

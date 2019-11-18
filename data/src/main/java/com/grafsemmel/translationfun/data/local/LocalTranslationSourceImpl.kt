@@ -5,8 +5,8 @@ import androidx.lifecycle.Transformations
 import com.grafsemmel.translationfun.data.AppExecutors
 import com.grafsemmel.translationfun.data.local.database.TranslationDatabase
 import com.grafsemmel.translationfun.data.local.database.entity.TranslationEntity
-import com.grafsemmel.translationtun.domain.model.TranslationItem
-import com.grafsemmel.translationtun.domain.source.LocalTranslationSource
+import com.grafsemmel.translationfun.domain.model.TranslationItem
+import com.grafsemmel.translationfun.domain.source.LocalTranslationSource
 
 class LocalTranslationSourceImpl(
         private val appExecutors: AppExecutors,

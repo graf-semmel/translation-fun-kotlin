@@ -1,4 +1,4 @@
-package com.grafsemmel.translationtun.domain.source
+package com.grafsemmel.translationfun.domain.source
 
 interface RemoteTranslationSource {
     fun translate(text: String, sourceLngCode: String, targetLngCode: String, callback: SimpleCallback<String>)

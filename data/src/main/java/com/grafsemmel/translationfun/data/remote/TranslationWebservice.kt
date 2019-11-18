@@ -5,7 +5,7 @@ import com.google.cloud.translate.Translate.TranslateOption
 import com.google.cloud.translate.TranslateException
 import com.google.cloud.translate.TranslateOptions
 import com.grafsemmel.translationfun.data.AppExecutors
-import com.grafsemmel.translationtun.domain.source.RemoteTranslationSource
+import com.grafsemmel.translationfun.domain.source.RemoteTranslationSource
 
 class TranslationWebservice(
         private val appExecutors: AppExecutors,
