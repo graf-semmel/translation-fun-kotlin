@@ -9,7 +9,6 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.grafsemmel.translationfun.MainActivity
 import android.grafsemmel.translationfun.translationfunkotlin.R
 import android.view.View
 import android.view.ViewGroup

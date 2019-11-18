@@ -26,7 +26,7 @@ class TranslationRepositoryImpl(
 
     override fun insert(item: TranslationItem) = localSource.insert(item)
 
-    override fun delete(item: TranslationItem) = localSource.delete(item.text)
+    override fun delete(item: TranslationItem) = localSource.delete(item)
 
     override fun update(item: TranslationItem) = localSource.update(item)
 

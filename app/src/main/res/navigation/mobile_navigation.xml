@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_search">
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.grafsemmel.translationfun.ui.search.SearchFragment"
+        android:label="@string/title_search"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/navigation_recent"
+        android:name="com.grafsemmel.translationfun.ui.recent.RecentFragment"
+        android:label="@string/title_recent"
+        tools:layout="@layout/fragment_list" />
+    <fragment
+        android:id="@+id/navigation_popular"
+        android:name="com.grafsemmel.translationfun.ui.popular.PopularFragment"
+        android:label="@string/title_popular"
+        tools:layout="@layout/fragment_list" />
+</navigation>

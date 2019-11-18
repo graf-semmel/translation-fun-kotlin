@@ -6,40 +6,28 @@
     android:orientation="vertical"
     android:padding="0dp">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:orientation="horizontal"
         android:padding="@dimen/padding_outer_search">
 
         <AutoCompleteTextView
             android:id="@+id/input_search"
             style="@style/Widget.AppCompat.EditText.Light"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_input_search"
-            android:layout_weight="1"
-            android:drawableEnd="@drawable/ic_search"
-            android:drawableRight="@drawable/ic_search"
+            android:drawableEnd="@drawable/ic_search_black_24dp"
             android:hint="@string/search_input_hint"
             android:imeOptions="actionSearch"
             android:inputType="text"
             android:padding="@dimen/padding_inner_search" />
-    </LinearLayout>
+    </FrameLayout>
 
-    <ScrollView
+    <fragment
+        android:id="@+id/fragment_recent"
+        android:name="com.grafsemmel.translationfun.ui.recent.RecentFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <include layout="@layout/include_card_most_recent" />
-
-            <include layout="@layout/include_card_most_viewed" />
-        </LinearLayout>
-    </ScrollView>
+        android:layout_height="match_parent" />
 </LinearLayout>

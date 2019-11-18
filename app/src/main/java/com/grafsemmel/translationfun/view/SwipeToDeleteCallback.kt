@@ -9,8 +9,10 @@ import android.graphics.drawable.Drawable
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class SwipeToDeleteCallback(private val mDeleteDrawable: Drawable,
-                                     private val mBackgroundColor: Int) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+abstract class SwipeToDeleteCallback(
+        private val mDeleteDrawable: Drawable,
+        private val mBackgroundColor: Int
+) : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
     private val mClearPaint: Paint = Paint()
     private val mIntrinsicWidth: Int = mDeleteDrawable.intrinsicWidth
     private val mBackground: ColorDrawable = ColorDrawable()

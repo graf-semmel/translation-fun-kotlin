@@ -26,7 +26,9 @@ class LocalTranslationSourceImpl(
 
     override fun update(item: TranslationItem) = appExecutors.diskIO().execute { dao.update(item.toDomain()) }
 
-    override fun delete(item: TranslationItem) = appExecutors.diskIO().execute { dao.delete(item.text) }
+    override fun delete(item: TranslationItem) = delete(item.text)
+
+    override fun delete(text: String) = appExecutors.diskIO().execute { dao.delete(text) }
 
     override fun getMostRecent(limit: Int): LiveData<List<TranslationItem>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
@@ -37,10 +39,6 @@ class LocalTranslationSourceImpl(
     }
 
     override fun deleteAll() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun delete(text: String) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

@@ -18,4 +18,9 @@
     <string name="system_no_network">No active internet connection</string>
     <string name="input_empty">Please input any text to translate</string>
     <string name="dialog_btn_back">Back</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="title_search">Search</string>
+    <string name="title_recent">Recent</string>
+    <string name="title_popular">Popular</string>
+    <string name="api_key">AIzaSyCr5yK8Tl6YUJsZ78l-ES-eTyt3GDS4U_U</string>
 </resources>
