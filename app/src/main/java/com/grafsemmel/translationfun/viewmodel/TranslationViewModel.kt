@@ -11,11 +11,11 @@ class TranslationViewModel(private val repository: TranslationRepository) : View
     val mostViewedTranslations: LiveData<List<TranslationItem>> = repository.getMostViewedTranslations()
     val activeTranslation: LiveData<ActiveTranslationState> = repository.getActiveTranslation()
 
-    fun save(pTranslationItem: TranslationItem) = repository.insert(pTranslationItem)
+    fun save(item: TranslationItem) = repository.insert(item)
 
-    fun remove(pTranslationItem: TranslationItem) = repository.delete(pTranslationItem)
+    fun remove(item: TranslationItem) = repository.delete(item)
 
-    fun restore(pTranslationItem: TranslationItem) = repository.insert(pTranslationItem)
+    fun restore(item: TranslationItem) = repository.insert(item)
 
-    fun translate(pText: String, pSourceLngCode: String, pTargetLngCode: String) = repository.translate(pText, pSourceLngCode, pTargetLngCode)
+    fun translate(text: String) = repository.translate(text)
 }

@@ -11,12 +11,12 @@
         tools:layout="@layout/fragment_dashboard" />
     <fragment
         android:id="@+id/navigation_recent"
-        android:name="com.grafsemmel.translationfun.ui.recent.RecentFragment"
+        android:name="com.grafsemmel.translationfun.ui.list.RecentFragment"
         android:label="@string/title_recent"
         tools:layout="@layout/fragment_list" />
     <fragment
         android:id="@+id/navigation_popular"
-        android:name="com.grafsemmel.translationfun.ui.popular.PopularFragment"
+        android:name="com.grafsemmel.translationfun.ui.list.PopularFragment"
         android:label="@string/title_popular"
         tools:layout="@layout/fragment_list" />
 </navigation>

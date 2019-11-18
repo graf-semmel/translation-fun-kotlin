@@ -14,7 +14,9 @@ import java.util.*
 class TranslationRepositoryImpl(
         private val localSource: LocalTranslationSource,
         private val remoteSource: RemoteTranslationSource,
-        private val appExecutors: AppExecutors
+        private val appExecutors: AppExecutors,
+        private val sourceLngCode: String,
+        private val targetLngCode: String
 ) : TranslationRepository {
     private val _activeTranslation = ActiveTranslation()
 
@@ -30,7 +32,7 @@ class TranslationRepositoryImpl(
 
     override fun update(item: TranslationItem) = localSource.update(item)
 
-    override fun translate(text: String, sourceLngCode: String, targetLngCode: String) {
+    override fun translate(text: String) {
         getTranslationByText(text, object : SimpleCallback<TranslationItem> {
             override fun onResult(translation: TranslationItem) {
                 translation.copy(views = translation.views + 1, date = Date()).let {

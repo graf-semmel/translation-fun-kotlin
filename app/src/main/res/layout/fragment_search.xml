@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
@@ -18,16 +19,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_input_search"
-            android:drawableEnd="@drawable/ic_search_black_24dp"
             android:hint="@string/search_input_hint"
             android:imeOptions="actionSearch"
             android:inputType="text"
-            android:padding="@dimen/padding_inner_search" />
+            android:paddingStart="@dimen/padding_inner_search"
+            android:paddingTop="@dimen/padding_inner_search"
+            android:paddingEnd="48dp"
+            android:paddingBottom="@dimen/padding_inner_search" />
+
+        <ImageButton
+            android:id="@+id/iv_search"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="end|center_vertical"
+            android:padding="8dp"
+            app:srcCompat="@drawable/ic_search_black_24dp" />
     </FrameLayout>
 
     <fragment
         android:id="@+id/fragment_recent"
-        android:name="com.grafsemmel.translationfun.ui.recent.RecentFragment"
+        android:name="com.grafsemmel.translationfun.ui.list.RecentFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>

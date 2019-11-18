@@ -11,5 +11,5 @@ interface TranslationRepository {
     fun insert(item: TranslationItem)
     fun delete(item: TranslationItem)
     fun update(item: TranslationItem)
-    fun translate(text: String, sourceLngCode: String, targetLngCode: String)
+    fun translate(text: String)
 }

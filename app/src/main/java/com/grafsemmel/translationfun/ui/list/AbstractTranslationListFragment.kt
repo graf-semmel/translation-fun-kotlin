@@ -1,4 +1,4 @@
-package com.grafsemmel.translationfun.ui.popular
+package com.grafsemmel.translationfun.ui.list
 
 import android.graphics.Color
 import android.os.Bundle
@@ -19,10 +19,10 @@ import com.grafsemmel.translationfun.view.SwipeToDeleteCallback
 import com.grafsemmel.translationfun.view.TranslationRecyclerViewAdapter
 import com.grafsemmel.translationfun.viewmodel.TranslationViewModel
 import kotlinx.android.synthetic.main.fragment_list.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 abstract class AbstractTranslationListFragment : Fragment() {
-    protected val viewModel by viewModel<TranslationViewModel>()
+    protected val viewModel by sharedViewModel<TranslationViewModel>()
     private var adapter: TranslationRecyclerViewAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
