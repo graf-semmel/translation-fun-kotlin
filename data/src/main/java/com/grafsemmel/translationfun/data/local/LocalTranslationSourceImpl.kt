@@ -1,13 +1,17 @@
-package com.grafsemmel.translationfun.data.source
+package com.grafsemmel.translationfun.data.local
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.grafsemmel.translationfun.data.source.database.TranslationDatabase
-import com.grafsemmel.translationfun.data.source.database.entity.TranslationEntity
+import com.grafsemmel.translationfun.data.AppExecutors
+import com.grafsemmel.translationfun.data.local.database.TranslationDatabase
+import com.grafsemmel.translationfun.data.local.database.entity.TranslationEntity
 import com.grafsemmel.translationtun.domain.model.TranslationItem
 import com.grafsemmel.translationtun.domain.source.LocalTranslationSource
 
-class LocalTranslationSourceImpl(database: TranslationDatabase) : LocalTranslationSource {
+class LocalTranslationSourceImpl(
+        private val appExecutors: AppExecutors,
+        database: TranslationDatabase
+) : LocalTranslationSource {
     private val dao = database.translationDao()
 
     override fun getAll(): LiveData<List<TranslationItem>> = dao.getAll().toDomain()
@@ -18,11 +22,11 @@ class LocalTranslationSourceImpl(database: TranslationDatabase) : LocalTranslati
 
     override fun getByText(text: String) = dao.getByText(text)?.toDomain()
 
-    override fun insert(item: TranslationItem) = dao.insert(item.toDomain())
+    override fun insert(item: TranslationItem) = appExecutors.diskIO().execute { dao.insert(item.toDomain()) }
 
-    override fun update(item: TranslationItem) = dao.update(item.toDomain())
+    override fun update(item: TranslationItem) = appExecutors.diskIO().execute { dao.update(item.toDomain()) }
 
-    override fun delete(item: TranslationItem) = dao.delete(item.text)
+    override fun delete(item: TranslationItem) = appExecutors.diskIO().execute { dao.delete(item.text) }
 
     override fun getMostRecent(limit: Int): LiveData<List<TranslationItem>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

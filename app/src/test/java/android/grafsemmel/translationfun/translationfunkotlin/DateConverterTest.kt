@@ -1,6 +1,5 @@
 package android.grafsemmel.translationfun.translationfunkotlin
 
-import com.grafsemmel.translationfun.data.source.database.entity.DateConverter
 import org.junit.Assert.*
 import org.junit.Test
 import java.util.*
@@ -14,7 +13,7 @@ class DateConverterTest {
     @Test
     fun convertToDateIsCorrect() {
         val timestamp = System.currentTimeMillis()
-        val date = com.grafsemmel.translationfun.data.source.database.entity.DateConverter.toDate(timestamp)
+        val date = com.grafsemmel.translationfun.data.local.database.entity.DateConverter.toDate(timestamp)
         assertNotNull(date)
         assertEquals(timestamp, date!!.time)
     }
@@ -22,16 +21,16 @@ class DateConverterTest {
     @Test
     fun convertToTimestampIsCorrect() {
         val date = Date()
-        val timestamp = com.grafsemmel.translationfun.data.source.database.entity.DateConverter.toTimestamp(date)
+        val timestamp = com.grafsemmel.translationfun.data.local.database.entity.DateConverter.toTimestamp(date)
         assertNotNull(timestamp)
         assertEquals(date.time, timestamp!!.toLong())
     }
 
     @Test
     fun convertNullReturnsNull() {
-        val timestamp = com.grafsemmel.translationfun.data.source.database.entity.DateConverter.toTimestamp(null)
+        val timestamp = com.grafsemmel.translationfun.data.local.database.entity.DateConverter.toTimestamp(null)
         assertNull(timestamp)
-        val date = com.grafsemmel.translationfun.data.source.database.entity.DateConverter.toDate(null)
+        val date = com.grafsemmel.translationfun.data.local.database.entity.DateConverter.toDate(null)
         assertNull(date)
     }
 }

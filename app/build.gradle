@@ -48,12 +48,6 @@ dependencies {
     implementation "org.koin:koin-androidx-scope:$koin_version"
     implementation "org.koin:koin-androidx-viewmodel:$koin_version"
     implementation "org.koin:koin-androidx-ext:$koin_version"
-    // Google translate components
-    implementation 'com.google.cloud:google-cloud-translate:1.48.0'
-    // Room components
-    implementation androidx_room
-    annotationProcessor androidx_room_compiler
-    kapt androidx_room_kapt
     // Lifecycle components
     implementation androidx_lifecycle
     annotationProcessor 'androidx.lifecycle:lifecycle-common-java8:2.1.0'

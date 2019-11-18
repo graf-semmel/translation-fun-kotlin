@@ -20,7 +20,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.grafsemmel.translationfun.data.source.database.dao.TranslationDao
+import com.grafsemmel.translationfun.data.local.database.dao.TranslationDao
 import android.grafsemmel.translationfun.translationfunkotlin.util.LiveDataTestUtil
 import junit.framework.Assert.*
 import org.junit.After
@@ -39,8 +39,8 @@ class TranslationDaoTest {
 
   // executes each task synchronously
   @get:Rule var instantTaskExecutorRule = InstantTaskExecutorRule()
-  private lateinit var mDatabase: com.grafsemmel.translationfun.data.source.database.TranslationDatabase
-  private lateinit var mTranslationDao: com.grafsemmel.translationfun.data.source.database.dao.TranslationDao
+  private lateinit var mDatabase: com.grafsemmel.translationfun.data.local.database.TranslationDatabase
+  private lateinit var mTranslationDao: com.grafsemmel.translationfun.data.local.database.dao.TranslationDao
 
   private lateinit var translationItemNewerLessViews: com.grafsemmel.translationtun.domain.model.TranslationItem
   private lateinit var translationItemOlderMoreViews: com.grafsemmel.translationtun.domain.model.TranslationItem
@@ -50,7 +50,7 @@ class TranslationDaoTest {
   fun initDb() {
     mDatabase = Room.inMemoryDatabaseBuilder(
             InstrumentationRegistry.getContext(),
-            com.grafsemmel.translationfun.data.source.database.TranslationDatabase::class.java).allowMainThreadQueries().build()
+            com.grafsemmel.translationfun.data.local.database.TranslationDatabase::class.java).allowMainThreadQueries().build()
     mTranslationDao = mDatabase.translationDao()
     val mTimeMillis = System.currentTimeMillis()
     translationItemNewerLessViews = buildTranslationItem("1", "", "", "", mTimeMillis, 1)

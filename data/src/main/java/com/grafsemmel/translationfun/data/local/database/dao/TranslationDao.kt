@@ -1,11 +1,11 @@
-package com.grafsemmel.translationfun.data.source.database.dao
+package com.grafsemmel.translationfun.data.local.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.grafsemmel.translationfun.data.source.database.entity.TranslationEntity
+import com.grafsemmel.translationfun.data.local.database.entity.TranslationEntity
 
 @Dao
 interface TranslationDao {

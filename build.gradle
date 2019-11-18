@@ -37,4 +37,7 @@ ext {
     androidx_room = 'androidx.room:room-runtime:2.2.1'
     androidx_room_compiler = 'androidx.room:room-compiler:2.2.1'
     androidx_room_kapt = 'androidx.room:room-compiler:2.2.1'
+    //translate
+    google_translate = 'com.google.cloud:google-cloud-translate:1.48.0'
+
 }

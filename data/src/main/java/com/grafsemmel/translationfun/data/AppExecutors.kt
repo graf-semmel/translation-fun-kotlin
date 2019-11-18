@@ -5,12 +5,12 @@ import android.os.Looper
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
-class AppExecutors private constructor(private val mDiskIO: Executor, private val mNetworkIO: Executor, private val mMainThread: Executor) {
-    fun diskIO(): Executor = mDiskIO
+object AppExecutors {
+    fun diskIO(): Executor = Executors.newSingleThreadExecutor()
 
-    fun networkIO(): Executor = mNetworkIO
+    fun networkIO(): Executor = Executors.newFixedThreadPool(3)
 
-    fun mainThread(): Executor = mMainThread
+    fun mainThread(): Executor = MainThreadExecutor()
 
     private class MainThreadExecutor : Executor {
         private val mainThreadHandler = Handler(Looper.getMainLooper())
@@ -18,13 +18,5 @@ class AppExecutors private constructor(private val mDiskIO: Executor, private va
         override fun execute(command: Runnable) {
             mainThreadHandler.post(command)
         }
-    }
-
-    companion object {
-        private var INSTANCE: AppExecutors? = null
-        val instance: AppExecutors
-            get() = INSTANCE
-                    ?: AppExecutors(Executors.newSingleThreadExecutor(), Executors.newFixedThreadPool(3), MainThreadExecutor())
-                            .also { INSTANCE = it }
     }
 }

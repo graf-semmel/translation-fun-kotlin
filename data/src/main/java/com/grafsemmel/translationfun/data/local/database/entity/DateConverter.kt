@@ -1,4 +1,4 @@
-package com.grafsemmel.translationfun.data.source.database.entity
+package com.grafsemmel.translationfun.data.local.database.entity
 
 import androidx.room.TypeConverter
 import java.util.*

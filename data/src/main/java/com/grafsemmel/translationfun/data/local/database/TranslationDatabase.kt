@@ -1,4 +1,4 @@
-package com.grafsemmel.translationfun.data.source.database
+package com.grafsemmel.translationfun.data.local.database
 
 import android.content.Context
 import androidx.room.Database
@@ -6,8 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.grafsemmel.translationfun.data.AppExecutors
-import com.grafsemmel.translationfun.data.source.database.dao.TranslationDao
-import com.grafsemmel.translationfun.data.source.database.entity.TranslationEntity
+import com.grafsemmel.translationfun.data.local.database.dao.TranslationDao
+import com.grafsemmel.translationfun.data.local.database.entity.TranslationEntity
 import java.util.*
 
 @Database(entities = arrayOf(TranslationEntity::class), version = 1, exportSchema = false)
@@ -20,7 +20,7 @@ abstract class TranslationDatabase : RoomDatabase() {
         private val onCreateCallback = object : Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
-                AppExecutors.instance.diskIO().execute {
+                AppExecutors.diskIO().execute {
                     INSTANCE?.apply {
                         runInTransaction {
                             val translationDao = translationDao()

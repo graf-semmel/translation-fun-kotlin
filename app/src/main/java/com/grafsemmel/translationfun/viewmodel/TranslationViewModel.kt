@@ -17,6 +17,5 @@ class TranslationViewModel(private val repository: TranslationRepository) : View
 
     fun restore(pTranslationItem: TranslationItem) = repository.insert(pTranslationItem)
 
-    fun translate(pText: String, pSourceLngCode: String, pTargetLngCode: String) =
-            repository.translate(pText, pSourceLngCode, pTargetLngCode)
+    fun translate(pText: String, pSourceLngCode: String, pTargetLngCode: String) = repository.translate(pText, pSourceLngCode, pTargetLngCode)
 }
