@@ -43,7 +43,6 @@ dependencies {
     implementation androidx_cardview
     implementation androidx_recyclerview
     implementation android_material
-    implementation androidx_lifecycle_common
     implementation gson
     // Koin
     implementation "org.koin:koin-android:$koin_version"
