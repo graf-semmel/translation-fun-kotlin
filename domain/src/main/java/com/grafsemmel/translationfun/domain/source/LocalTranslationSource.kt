@@ -7,7 +7,7 @@ import io.reactivex.Observable
 interface LocalTranslationSource {
     fun getAll(): LiveData<List<TranslationItem>>
     fun getAllOrderedByDate(): Observable<List<TranslationItem>>
-    fun getAllOrderedByViews(): LiveData<List<TranslationItem>>
+    fun getAllOrderedByViews(): Observable<List<TranslationItem>>
     fun getByText(text: String): TranslationItem?
     fun getMostRecent(limit: Int): LiveData<List<TranslationItem>>
     fun getMostViewed(limit: Int): LiveData<List<TranslationItem>>

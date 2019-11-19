@@ -1,6 +1,5 @@
 package com.grafsemmel.translationfun.data.repository
 
-import androidx.lifecycle.LiveData
 import com.grafsemmel.translationfun.data.AppExecutors
 import com.grafsemmel.translationfun.data.model.ActiveTranslation
 import com.grafsemmel.translationfun.domain.model.ActiveTranslationState
@@ -21,11 +20,11 @@ class TranslationRepositoryImpl(
 ) : TranslationRepository {
     private val _activeTranslation = ActiveTranslation()
 
-    override fun getActiveTranslation(): LiveData<ActiveTranslationState> = _activeTranslation
+    override fun getActiveTranslation(): Observable<ActiveTranslationState> = _activeTranslation.state
 
     override fun getMostRecentTranslations(): Observable<List<TranslationItem>> = localSource.getAllOrderedByDate()
 
-    override fun getMostViewedTranslations(): LiveData<List<TranslationItem>> = localSource.getAllOrderedByViews()
+    override fun getMostViewedTranslations(): Observable<List<TranslationItem>> = localSource.getAllOrderedByViews()
 
     override fun insert(item: TranslationItem) = localSource.insert(item)
 

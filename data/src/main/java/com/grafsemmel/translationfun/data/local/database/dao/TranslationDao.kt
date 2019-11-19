@@ -17,7 +17,7 @@ interface TranslationDao {
     fun getAllOrderedByDate(): Observable<List<TranslationEntity>>
 
     @Query("SELECT * from translation_item ORDER BY views DESC")
-    fun getAllOrderedByViews(): LiveData<List<TranslationEntity>>
+    fun getAllOrderedByViews(): Observable<List<TranslationEntity>>
 
     @Insert
     fun insert(pTranslationEntity: TranslationEntity)

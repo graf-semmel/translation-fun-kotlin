@@ -19,7 +19,7 @@ class LocalTranslationSourceImpl(
 
     override fun getAllOrderedByDate(): Observable<List<TranslationItem>> = dao.getAllOrderedByDate().map { it.toDomain() }
 
-    override fun getAllOrderedByViews(): LiveData<List<TranslationItem>> = dao.getAllOrderedByViews().toDomain()
+    override fun getAllOrderedByViews(): Observable<List<TranslationItem>> = dao.getAllOrderedByViews().map { it.toDomain() }
 
     override fun getByText(text: String) = dao.getByText(text)?.toDomain()
 

@@ -2,11 +2,16 @@ package com.grafsemmel.translationfun.data.model
 
 import com.grafsemmel.translationfun.domain.model.ActiveTranslationState
 import com.grafsemmel.translationfun.domain.model.TranslationItem
+import io.reactivex.Observable
+import io.reactivex.subjects.PublishSubject
 
-class ActiveTranslation : SingleLiveEvent<ActiveTranslationState>() {
-    fun saved(item: TranslationItem) = postValue(ActiveTranslationState.New(item))
+class ActiveTranslation {
+    private val _source: PublishSubject<ActiveTranslationState> = PublishSubject.create()
+    val state: Observable<ActiveTranslationState> = _source
 
-    fun updated(item: TranslationItem) = postValue(ActiveTranslationState.Update(item))
+    fun saved(item: TranslationItem) = _source.onNext(ActiveTranslationState.New(item))
 
-    fun failed() = postValue(ActiveTranslationState.Error)
+    fun updated(item: TranslationItem) = _source.onNext(ActiveTranslationState.Update(item))
+
+    fun failed() = _source.onNext(ActiveTranslationState.Error)
 }
