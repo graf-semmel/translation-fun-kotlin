@@ -32,12 +32,24 @@ ext {
     androidx_recyclerview = 'androidx.recyclerview:recyclerview:1.0.0'
     androidx_core = 'androidx.core:core-ktx:1.0.2'
     androidx_lifecycle = 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    androidx_vector = 'androidx.vectordrawable:vectordrawable:1.0.1'
+    androidx_lifecycle_common = 'androidx.lifecycle:lifecycle-common-java8:2.1.0'
     android_material = 'com.google.android.material:material:1.0.0'
-    //room
+    // room
     androidx_room = 'androidx.room:room-runtime:2.2.1'
     androidx_room_compiler = 'androidx.room:room-compiler:2.2.1'
     androidx_room_kapt = 'androidx.room:room-compiler:2.2.1'
-    //translate
+    // navigation
+    androidx_navigation_fragment = 'androidx.navigation:navigation-fragment:2.0.0'
+    androidx_navigation_ui = 'androidx.navigation:navigation-ui:2.0.0'
+    androidx_navigation_fragment_ktx = 'androidx.navigation:navigation-fragment-ktx:2.0.0'
+    androidx_navigation_ui_ktx = 'androidx.navigation:navigation-ui-ktx:2.0.0'
+    // translate
     google_translate = 'com.google.cloud:google-cloud-translate:1.48.0'
+    // RxJava
+    rx_core = 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    rx_room = 'androidx.room:room-rxjava2:2.2.1'
+    // third partz
+    gson = 'com.google.code.gson:gson:2.8.5'
 
 }

@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.grafsemmel.translationfun.data.local.database.entity.TranslationEntity
+import io.reactivex.Observable
 
 @Dao
 interface TranslationDao {
@@ -13,7 +14,7 @@ interface TranslationDao {
     fun getAll(): LiveData<List<TranslationEntity>>
 
     @Query("SELECT * from translation_item ORDER BY date DESC")
-    fun getAllOrderedByDate(): LiveData<List<TranslationEntity>>
+    fun getAllOrderedByDate(): Observable<List<TranslationEntity>>
 
     @Query("SELECT * from translation_item ORDER BY views DESC")
     fun getAllOrderedByViews(): LiveData<List<TranslationEntity>>

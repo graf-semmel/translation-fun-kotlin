@@ -31,12 +31,16 @@ dependencies {
     implementation project(':domain')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation androidx_appcompat
+    kapt androidx_room_kapt
     // Room
     implementation androidx_core
     implementation androidx_room
     annotationProcessor androidx_room_compiler
+    // Rx
+    implementation rx_core
+    implementation rx_room
     // Google translate components
     implementation google_translate
-    kapt androidx_room_kapt
+
     testImplementation 'junit:junit:4.12'
 }

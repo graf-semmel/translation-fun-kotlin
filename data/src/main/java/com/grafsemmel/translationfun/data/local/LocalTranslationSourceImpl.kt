@@ -7,6 +7,7 @@ import com.grafsemmel.translationfun.data.local.database.TranslationDatabase
 import com.grafsemmel.translationfun.data.local.database.entity.TranslationEntity
 import com.grafsemmel.translationfun.domain.model.TranslationItem
 import com.grafsemmel.translationfun.domain.source.LocalTranslationSource
+import io.reactivex.Observable
 
 class LocalTranslationSourceImpl(
         private val appExecutors: AppExecutors,
@@ -16,7 +17,7 @@ class LocalTranslationSourceImpl(
 
     override fun getAll(): LiveData<List<TranslationItem>> = dao.getAll().toDomain()
 
-    override fun getAllOrderedByDate(): LiveData<List<TranslationItem>> = dao.getAllOrderedByDate().toDomain()
+    override fun getAllOrderedByDate(): Observable<List<TranslationItem>> = dao.getAllOrderedByDate().map { it.toDomain() }
 
     override fun getAllOrderedByViews(): LiveData<List<TranslationItem>> = dao.getAllOrderedByViews().toDomain()
 

@@ -9,6 +9,7 @@ import com.grafsemmel.translationfun.domain.repository.TranslationRepository
 import com.grafsemmel.translationfun.domain.source.LocalTranslationSource
 import com.grafsemmel.translationfun.domain.source.RemoteTranslationSource
 import com.grafsemmel.translationfun.domain.source.RemoteTranslationSource.SimpleCallback
+import io.reactivex.Observable
 import java.util.*
 
 class TranslationRepositoryImpl(
@@ -22,7 +23,7 @@ class TranslationRepositoryImpl(
 
     override fun getActiveTranslation(): LiveData<ActiveTranslationState> = _activeTranslation
 
-    override fun getMostRecentTranslations(): LiveData<List<TranslationItem>> = localSource.getAllOrderedByDate()
+    override fun getMostRecentTranslations(): Observable<List<TranslationItem>> = localSource.getAllOrderedByDate()
 
     override fun getMostViewedTranslations(): LiveData<List<TranslationItem>> = localSource.getAllOrderedByViews()
 
