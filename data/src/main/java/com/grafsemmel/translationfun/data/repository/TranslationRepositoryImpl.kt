@@ -26,11 +26,11 @@ class TranslationRepositoryImpl(
 
     override fun getMostViewedTranslations(): Observable<List<TranslationItem>> = localSource.getAllOrderedByViews()
 
-    override fun insert(item: TranslationItem) = localSource.insert(item)
+    override fun insert(item: TranslationItem) = runOnDisk { localSource.insert(item) }
 
-    override fun delete(item: TranslationItem) = localSource.delete(item)
+    override fun delete(item: TranslationItem) = runOnDisk { localSource.delete(item) }
 
-    override fun update(item: TranslationItem) = localSource.update(item)
+    override fun update(item: TranslationItem) = runOnDisk { localSource.update(item) }
 
     override fun translate(text: String) {
         getTranslationByText(text, object : SimpleCallback<TranslationItem> {
@@ -48,13 +48,14 @@ class TranslationRepositoryImpl(
     }
 
     private fun getTranslationByText(text: String, callback: SimpleCallback<TranslationItem>) = appExecutors.diskIO().execute {
-        val translation = localSource.getByText(text)
-        appExecutors.mainThread().execute {
-            when (translation) {
-                null -> callback.onNoResult()
-                else -> callback.onResult(translation)
-            }
-        }
+//        val translation = localSource.getByText(text)
+//        translation.
+//        appExecutors.mainThread().execute {
+//            when (translation) {
+//                null -> callback.onNoResult()
+//                else -> callback.onResult(translation)
+//            }
+//        }
     }
 
     private fun translateByGoogle(text: String, sourceLngCode: String, targetLngCode: String) {
@@ -68,5 +69,9 @@ class TranslationRepositoryImpl(
                 _activeTranslation.failed()
             }
         })
+    }
+
+    private fun runOnDisk(task: () -> Unit) {
+        AppExecutors.diskIO().execute(task)
     }
 }

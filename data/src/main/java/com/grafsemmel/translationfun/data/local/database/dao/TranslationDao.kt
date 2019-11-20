@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.grafsemmel.translationfun.data.local.database.entity.TranslationEntity
+import io.reactivex.Maybe
 import io.reactivex.Observable
 
 @Dao
@@ -26,7 +27,7 @@ interface TranslationDao {
     fun update(pTranslationEntity: TranslationEntity)
 
     @Query("SELECT * from translation_item WHERE text = :pText")
-    fun getByText(pText: String): TranslationEntity?
+    fun getByText(pText: String): Maybe<TranslationEntity>
 
     @Query("SELECT * from translation_item ORDER BY date DESC LIMIT :limit")
     fun getMostRecent(limit: Int): LiveData<List<TranslationEntity>>
