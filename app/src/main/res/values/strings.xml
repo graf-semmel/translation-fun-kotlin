@@ -10,6 +10,7 @@
     <string name="snack_translation_item_removed">Translation removed.</string>
     <string name="snack_undo">UNDO</string>
     <string name="snack_translation_failed">Sorry. Could not translate text!</string>
+    <string name="snack_no_internet">No active internet connection.</string>
     <string name="dialog_title">Translation Result</string>
     <string name="dialog_btn_save">Save</string>
     <string name="dialog_btn_cancel">Cancel</string>

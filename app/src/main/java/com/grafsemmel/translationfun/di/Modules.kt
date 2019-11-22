@@ -9,6 +9,7 @@ import com.grafsemmel.translationfun.data.repository.TranslationRepositoryImpl
 import com.grafsemmel.translationfun.domain.repository.TranslationRepository
 import com.grafsemmel.translationfun.domain.source.LocalTranslationSource
 import com.grafsemmel.translationfun.domain.source.RemoteTranslationSource
+import com.grafsemmel.translationfun.utils.ConnectivityLiveData
 import com.grafsemmel.translationfun.viewmodel.TranslationViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -28,4 +29,5 @@ val appModule = module {
         )
     }
     viewModel { TranslationViewModel(get()) }
+    single { ConnectivityLiveData(get()) }
 }

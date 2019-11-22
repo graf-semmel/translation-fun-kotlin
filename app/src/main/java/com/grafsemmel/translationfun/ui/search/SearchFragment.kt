@@ -13,7 +13,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.grafsemmel.translationfun.R
 import com.grafsemmel.translationfun.domain.model.ActiveTranslationState
 import com.grafsemmel.translationfun.domain.model.TranslationItem
-import com.grafsemmel.translationfun.utils.NetworkUtils
 import com.grafsemmel.translationfun.utils.ViewUtils
 import com.grafsemmel.translationfun.view.TranslationFilterListAdapter
 import com.grafsemmel.translationfun.viewmodel.TranslationViewModel
@@ -28,10 +27,6 @@ class SearchFragment : Fragment() {
         when {
             text.isEmpty() -> {
                 ViewUtils.showShortToast(requireContext(), R.string.input_empty)
-                false
-            }
-            !NetworkUtils.isConnected(requireContext()) -> {
-                ViewUtils.showShortToast(requireContext(), R.string.system_no_network)
                 false
             }
             else -> {
