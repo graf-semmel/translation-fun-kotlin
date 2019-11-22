@@ -24,7 +24,6 @@ class TranslationViewModel(private val repository: TranslationRepository) : View
     init {
         repository.getMostRecentTranslations().onResult { _mostRecentTranslations.postValue(it) }
         repository.getMostViewedTranslations().onResult { _mostViewedTranslations.postValue(it) }
-        repository.getActiveTranslation().onResult { _activeTranslation.postValue(it) }
     }
 
     fun save(item: TranslationItem) = repository.insert(item)
@@ -34,6 +33,12 @@ class TranslationViewModel(private val repository: TranslationRepository) : View
     fun restore(item: TranslationItem) = repository.insert(item)
 
     fun translate(text: String) = repository.translate(text)
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+            .subscribe(
+                    { _activeTranslation.postValue(it) },
+                    { /* do nothing */ }
+            )
 
     override fun onCleared() {
         super.onCleared()

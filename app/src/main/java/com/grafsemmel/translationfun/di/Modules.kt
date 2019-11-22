@@ -17,11 +17,10 @@ import org.koin.dsl.module
 val appModule = module {
     single { AppExecutors }
     single { TranslationDatabase.getInstance(get()) }
-    single<LocalTranslationSource> { LocalTranslationSourceImpl(get(), get()) }
-    single<RemoteTranslationSource> { TranslationWebservice(get(), androidContext().getString(R.string.api_key)) }
+    single<LocalTranslationSource> { LocalTranslationSourceImpl(get()) }
+    single<RemoteTranslationSource> { TranslationWebservice(androidContext().getString(R.string.api_key)) }
     single<TranslationRepository> {
         TranslationRepositoryImpl(
-                get(),
                 get(),
                 get(),
                 androidContext().getString(R.string.source_lng_code),

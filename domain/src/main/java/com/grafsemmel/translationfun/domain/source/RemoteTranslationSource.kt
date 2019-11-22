@@ -1,10 +1,8 @@
 package com.grafsemmel.translationfun.domain.source
 
-interface RemoteTranslationSource {
-    fun translate(text: String, sourceLngCode: String, targetLngCode: String, callback: SimpleCallback<String>)
-    interface SimpleCallback<T> {
-        fun onResult(translation: T)
+import com.grafsemmel.translationfun.domain.model.TranslationItem
+import io.reactivex.Single
 
-        fun onNoResult()
-    }
+interface RemoteTranslationSource {
+    fun translate(text: String, sourceLngCode: String, targetLngCode: String): Single<TranslationItem>
 }
